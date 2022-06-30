@@ -3,7 +3,7 @@ import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 const Task = ({task}) => {
-    const {_id, title, body} = task;
+    const {id, title, body} = task;
     const handleCompleted = (id) =>{
 
     }
@@ -17,7 +17,7 @@ const Task = ({task}) => {
         <Card.Body>
             <div className='d-flex justify-content-between'>
                 <Card.Title className='text-start'>{title}</Card.Title>
-                <button onClick={() => handleDeleteItem(_id)} className='main-btn'>
+                <button onClick={() => handleDeleteItem(id)} className='main-btn'>
                     <FontAwesomeIcon  icon={faTrash}></FontAwesomeIcon>
                 </button>
             </div>
@@ -25,7 +25,7 @@ const Task = ({task}) => {
             <Card.Text>
                 {body}
             </Card.Text>
-            <button onClick={() => handleCompleted(_id)} className='main-btn'>Completed</button>
+            <button onClick={() => handleCompleted(id)} className='main-btn'>Completed</button>
         </Card.Body>
     </Card>
     );

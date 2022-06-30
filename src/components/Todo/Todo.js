@@ -21,7 +21,7 @@ const Todo = () => {
                     <Col xs={12} md={7} lg={7}>
                         {
                             tasks.map(task => <Task 
-                            key={task._id}
+                            key={task.id}
                             task={task}
                             ></Task>)
                         }
