@@ -11,7 +11,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .main-btn{
-    background-color: rgb(23, 160, 160);
+    background-color: black;
     border: 1px solid white;
     color: white;
     padding: 8px 12px;
@@ -19,8 +19,8 @@
 }
 .main-btn:hover{
     background-color: white;
-    color: rgb(23, 160, 160);
-    border: 1px solid rgb(23, 160, 160);
+    color: black;
+    border: 1px solid black;
 }
 .main-btn:active{
     background-color: red;

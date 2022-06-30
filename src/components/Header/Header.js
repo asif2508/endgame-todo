@@ -13,7 +13,7 @@ const Header = () => {
                         <Nav className="ms-auto">
                             <Nav.Link as={Link} to='/' >Todo</Nav.Link>
                             <Nav.Link as={Link} to='/completed' >Completed</Nav.Link>
-                            <Nav.Link as={Link} to='/calandar' >Calandar</Nav.Link>
+                            <Nav.Link as={Link} to='/calendar' >Calendar</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

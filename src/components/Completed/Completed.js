@@ -9,7 +9,7 @@ const Completed = () => {
     const completeTasks = useSelector(getAllCompleteTasks);
     useEffect(() => {
         dispatch(completeTaskFetch());
-    }, [dispatch])
+    }, [dispatch, completeTasks]);
     console.log(completeTasks)
     return (
         <div>

@@ -3,7 +3,8 @@ import { Card, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch } from 'react-redux';
-import { completeTask } from '../../features/tasks/taskSlice';
+import { completeTask, deleteTask } from '../../features/tasks/taskSlice';
+import { toast } from 'react-toastify';
 const Task = ({ task }) => {
     const dispatch = useDispatch();
     const [checkValue, setCheckValue] = useState(false);
@@ -11,13 +12,15 @@ const Task = ({ task }) => {
     const handleCompleted = (_id) => {
         setCheckValue(!checkValue);
         dispatch(completeTask(_id));
+        toast.info('Hurrah! Task has been completed.');
     }
     const handleDeleteItem = (_id) => {
-
+        dispatch(deleteTask(_id));
+        toast.error('Task has been deleted.');
     }
     return (
         <Card className='mb-3 mt-4'>
-            <Card.Header as="h5">Your Todo-Item</Card.Header>
+            <Card.Header as="h5">Today's Routine</Card.Header>
 
             <Card.Body>
                 <div className='d-flex justify-content-between'>

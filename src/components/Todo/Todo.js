@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Task from '../../commons/Task/Task';
 import { addTask, fetchedTasks, getAllTasks } from '../../features/tasks/taskSlice';
 import './Todo.css';
@@ -22,6 +23,7 @@ const Todo = () => {
         }
         dispatch(addTask(data));
         event.target.reset();
+        toast.info('Task added successfully!');
     }
     return (
         <div>

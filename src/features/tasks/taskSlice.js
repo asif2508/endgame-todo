@@ -21,6 +21,11 @@ export const completeTask = createAsyncThunk('tasks/completeTask', async (id) =>
     return response.data;
 })
 
+export const deleteTask = createAsyncThunk('tasks/deleteTask', async (id)=>{
+    const response = await taskApi.delete(`/task/${id}`);
+    return response.data;
+}) 
+
 const initialState = {
     tasks: [],
     completeTasks:[],
@@ -49,6 +54,9 @@ const taskSlice = createSlice({
         [completeTaskFetch.fulfilled]: (state, {payload}) =>{
             console.log('complete fetched successfully');
             return {...state, completeTasks: payload};
+        },
+        [deleteTask.fulfilled]: () => {
+            console.log('successfully completed');
         },
         [fetchedTasks.rejected]: () => {
             console.log("request rejected");
