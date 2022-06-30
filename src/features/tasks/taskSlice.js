@@ -6,6 +6,11 @@ export const fetchedTasks = createAsyncThunk('tasks/fetchedTasks', async () => {
     return response.data;
 });
 
+export const completeTaskFetch = createAsyncThunk('/tasks/completeTaskFetch', async () =>{
+    const response = await taskApi.get('/completetask');
+    return response.data;
+})
+
 export const addTask = createAsyncThunk('tasks/addTask', async (data) => {
     const response = await taskApi.post('/task', data);
     return response.data;
@@ -18,6 +23,7 @@ export const completeTask = createAsyncThunk('tasks/completeTask', async (id) =>
 
 const initialState = {
     tasks: [],
+    completeTasks:[],
 }
 
 const taskSlice = createSlice({
@@ -40,6 +46,10 @@ const taskSlice = createSlice({
         [completeTask.fulfilled]: () => {
             console.log('successfully completed');
         },
+        [completeTaskFetch.fulfilled]: (state, {payload}) =>{
+            console.log('complete fetched successfully');
+            return {...state, completeTasks: payload};
+        },
         [fetchedTasks.rejected]: () => {
             console.log("request rejected");
         }
@@ -47,4 +57,5 @@ const taskSlice = createSlice({
 });
 
 export const getAllTasks = state => state.tasks.tasks;
+export const getAllCompleteTasks = state => state.tasks.completeTasks;
 export default taskSlice.reducer;
