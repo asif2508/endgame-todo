@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import Task from '../../commons/Task/Task';
 import { fetchedTasks, getAllTasks } from '../../features/tasks/taskSlice';
-
+import './Todo.css';
 const Todo = () => {
     const dispatch = useDispatch();
     const tasks = useSelector(getAllTasks);
@@ -11,7 +12,7 @@ const Todo = () => {
     },[dispatch]);
     console.log(tasks);
     const handleAddTask = () =>{
-        
+
     }
     return (
         <div>
@@ -19,7 +20,10 @@ const Todo = () => {
                 <Row className='gy-5'>
                     <Col xs={12} md={7} lg={7}>
                         {
-                            tasks.map()
+                            tasks.map(task => <Task 
+                            key={task._id}
+                            task={task}
+                            ></Task>)
                         }
                     </Col>
                     <Col xs={12} md={5} lg={5}>
