@@ -2,17 +2,26 @@ import React, { useEffect } from 'react';
 import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Task from '../../commons/Task/Task';
-import { fetchedTasks, getAllTasks } from '../../features/tasks/taskSlice';
+import { addTask, fetchedTasks, getAllTasks } from '../../features/tasks/taskSlice';
 import './Todo.css';
 const Todo = () => {
     const dispatch = useDispatch();
     const tasks = useSelector(getAllTasks);
     useEffect(()=>{
         dispatch(fetchedTasks());
-    },[dispatch]);
+    },[dispatch, tasks]);
     console.log(tasks);
-    const handleAddTask = () =>{
-
+    const handleAddTask = (event) =>{
+        event.preventDefault();
+        const name = event.target.name.value;
+        const desc = event.target.desc.value;
+        const data = {
+            name: name,
+            desc: desc,
+            completed: false,
+        }
+        dispatch(addTask(data));
+        event.target.reset();
     }
     return (
         <div>
@@ -20,8 +29,8 @@ const Todo = () => {
                 <Row className='gy-5'>
                     <Col xs={12} md={7} lg={7}>
                         {
-                            tasks.map(task => <Task 
-                            key={task.id}
+                            tasks?.map(task => <Task 
+                            key={task._id}
                             task={task}
                             ></Task>)
                         }

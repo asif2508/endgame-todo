@@ -2,12 +2,15 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useDispatch } from 'react-redux';
+import { completeTask } from '../../features/tasks/taskSlice';
 const Task = ({task}) => {
-    const {id, title, body} = task;
-    const handleCompleted = (id) =>{
-
+    const dispatch = useDispatch();
+    const {_id, name, desc} = task;
+    const handleCompleted = (_id) =>{
+        dispatch(completeTask(_id));
     }
-    const handleDeleteItem = (id)=>{
+    const handleDeleteItem = (_id)=>{
 
     }
     return (
@@ -16,16 +19,16 @@ const Task = ({task}) => {
 
         <Card.Body>
             <div className='d-flex justify-content-between'>
-                <Card.Title className='text-start'>{title}</Card.Title>
-                <button onClick={() => handleDeleteItem(id)} className='main-btn'>
+                <Card.Title className='text-start'>{name}</Card.Title>
+                <button onClick={() => handleDeleteItem(_id)} className='main-btn'>
                     <FontAwesomeIcon  icon={faTrash}></FontAwesomeIcon>
                 </button>
             </div>
 
             <Card.Text>
-                {body}
+                {desc}
             </Card.Text>
-            <button onClick={() => handleCompleted(id)} className='main-btn'>Completed</button>
+            <button onClick={() => handleCompleted(_id)} className='main-btn'>Completed</button>
         </Card.Body>
     </Card>
     );

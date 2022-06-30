@@ -1,11 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { taskApi } from "../../commons/ApiCall";
 
-export const fetchedTasks =createAsyncThunk('tasks/fetchedTasks',  async ()=>{
-    const response = await taskApi.get('/posts');
+export const fetchedTasks = createAsyncThunk('tasks/fetchedTasks', async () => {
+    const response = await taskApi.get('/task');
     return response.data;
-}
-)
+});
+
+export const addTask = createAsyncThunk('tasks/addTask', async (data) => {
+    const response = await taskApi.post('/task', data);
+    return response.data;
+})
+
+export const completeTask = createAsyncThunk('tasks/completeTask', async (id) => {
+    const response = await taskApi.patch(`/task/${id}`, { completed: true });
+    return response.data;
+})
+
 const initialState = {
     tasks: [],
 }
@@ -13,18 +23,24 @@ const initialState = {
 const taskSlice = createSlice({
     name: "tasks",
     initialState,
-    reducers:{
+    reducers: {
 
     },
-    extraReducers:{
-        [fetchedTasks.pending]: ()=>{
+    extraReducers: {
+        [fetchedTasks.pending]: () => {
             console.log('movie is loading');
         },
-        [fetchedTasks.fulfilled] : (state, {payload}) =>{
+        [fetchedTasks.fulfilled]: (state, { payload }) => {
             console.log("successfully fetched");
-            return {...state, tasks: payload};
+            return { ...state, tasks: payload };
         },
-        [fetchedTasks.rejected]: ()=>{
+        [addTask.fulfilled]: () => {
+            console.log("task fulfilled");
+        },
+        [completeTask.fulfilled]: () => {
+            console.log('successfully completed');
+        },
+        [fetchedTasks.rejected]: () => {
             console.log("request rejected");
         }
     }
