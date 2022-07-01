@@ -1,0 +1,39 @@
+/* footer  */
+.footer{
+    background-color: #000000;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+.name{
+    color: white;
+    font-weight: lighter;
+}
+.footer-heading{
+    line-height: 2px;
+}
+.address{
+    color: white;
+}
+.address a{
+    text-decoration: none;
+    color: white;
+    margin-left: 3px;
+}
+.address span{
+    text-decoration: none;
+    color: white;
+    margin-left: 3px;
+}
+
+.sub-btn{
+    text-decoration: none;
+    color: white;
+    background-color: #E0B973;
+    border: 1px solid #E0B973;
+}
+.sub-btn:hover{
+    background-color: white;
+    color: #000000;
+    border: 1px solid #ffffff;
+}
